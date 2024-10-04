@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Form Tracking</title>
+    <!-- Google Analytics or Custom Script can go here -->
+</head>
+<body>
+    <h1>Survey Form</h1>
+    <p>Please fill out the form below:</p>
+
+    <!-- Embed Google Form -->
+    <iframe src="https://forms.gle/oELqJi7FhqNxyZGC7" width="640" height="480" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+    
+    <!-- Custom Tracking Script -->
+    <script>
+        // Custom tracking script - replace with your tracking code or logic
+        (function() {
+            var email = "veljko.tatalovic@gmail.com";
+            var subject = "Google Form Opened";
+            var message = "The Google Form has been accessed on " + new Date().toLocaleString();
+            
+            // Function to send email via Apps Script Web App or another service
+            function sendEmail() {
+                var url = 'https://script.google.com/macros/s/AKfycbyvnM0S0yILYBu2SAhhDrYTCkaIN_TObvs0e2Smx-fLVzx5ajW0jglW96xIPQ4ndJi-/exec';
+                var params = {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ email: email, subject: subject, message: message })
+                };
+                fetch(url, params);
+            }
+
+            // Call sendEmail when the form page is loaded
+            sendEmail();
+        })();
+    </script>
+</body>
+</html>
